@@ -22,29 +22,27 @@ function isRateLimited(ip) {
 
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
+    try {
+      const url = new URL(request.url);
+      const path = url.pathname.replace(/\/$/, '');
 
-    // Only intercept POST /contact — everything else served as static file
-    if (url.pathname !== '/contact' || request.method === 'GET') {
-      return env.ASSETS.fetch(request);
-    }
+      // Only intercept /contact API requests
+      if (path === '/contact') {
+        if (request.method === 'OPTIONS') {
+          return new Response(null, { status: 204, headers: corsHeaders(env) });
+        }
+        if (request.method !== 'POST') {
+          return json({ error: 'Method not allowed' }, 405, env);
+        }
 
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: corsHeaders(env) });
-    }
+        const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+        if (isRateLimited(ip)) {
+          return json({ error: 'Too many requests. Wait a minute and try again.' }, 429, env);
+        }
 
-    if (request.method !== 'POST') {
-      return json({ error: 'Method not allowed' }, 405, env);
-    }
-
-    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-    if (isRateLimited(ip)) {
-      return json({ error: 'Too many requests. Wait a minute and try again.' }, 429, env);
-    }
-
-    let data;
-    try { data = await request.json(); }
-    catch { return json({ error: 'Invalid request' }, 400, env); }
+        let data;
+        try { data = await request.json(); }
+        catch { return json({ error: 'Invalid request' }, 400, env); }
 
     if (!env.RESEND_API_KEY) {
       return json({ error: 'Server configuration error: Missing Resend API key.' }, 500, env);
@@ -106,7 +104,18 @@ export default {
       return json({ error: `Resend API Error: ${resendError}` }, 500, env);
     }
 
-    return json({ success: true }, 200, env);
+        return json({ success: true }, 200, env);
+      }
+
+      // Serve static assets for all other routes
+      return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
+    } catch (err) {
+      // Guarantee a JSON response even if the worker completely crashes
+      return new Response(JSON.stringify({ error: `Worker Crash: ${err.message}` }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders(env) }
+      });
+    }
   }
 };
 
