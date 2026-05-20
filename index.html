@@ -386,12 +386,13 @@
       const res = await fetch(WORKER_URL, {
         method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
       });
+      const respData = await res.json().catch(() => ({}));
       if(res.ok){
         st.textContent = '✓ Thank you! We received your message and will respond within one business day.';
         st.className = 'ok'; e.target.reset();
-      } else { throw new Error(); }
-    } catch {
-      st.textContent = '✗ Something went wrong. Please try again or contact us directly.';
+      } else { throw new Error(respData.error || 'Server error occurred'); }
+    } catch (err) {
+      st.textContent = '✗ ' + (err.message || 'Something went wrong. Please try again or contact us directly.');
       st.className = 'err';
     }
     st.style.display = 'block';

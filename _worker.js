@@ -46,6 +46,10 @@ export default {
     try { data = await request.json(); }
     catch { return json({ error: 'Invalid request' }, 400, env); }
 
+    if (!env.RESEND_API_KEY) {
+      return json({ error: 'Server configuration error: Missing Resend API key.' }, 500, env);
+    }
+
     const { firstName, lastName, email, phone, service, message, hp_name } = data;
 
     // Honeypot
@@ -97,8 +101,9 @@ export default {
     });
 
     if (!resendResp.ok) {
-      console.error('Resend error:', await resendResp.text());
-      return json({ error: 'Failed to send. Please email us directly.' }, 500, env);
+      const resendError = await resendResp.text();
+      console.error('Resend error:', resendError);
+      return json({ error: `Resend API Error: ${resendError}` }, 500, env);
     }
 
     return json({ success: true }, 200, env);
