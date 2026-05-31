@@ -131,7 +131,6 @@
     #fstatus.ok{background:#c8ecd7;color:#0a2117}
     #fstatus.err{background:#fde8e8;color:#5c1a1a}
     
-    /* Layout styling adjustment placeholder for hCaptcha box alignment */
     .captcha-wrapper { margin: 1.25rem 0; width: 100%; display: flex; justify-content: flex-start; }
 
     footer{background:var(--ink);color:rgba(255,255,255,.5);padding:2.75rem 2.5rem}
@@ -271,11 +270,6 @@
           <h3>Have a project in mind?</h3>
           <p>We can help you bring your ideas to life. Let's talk about what we can build and grow together.</p>
           <a href="#contact" class="btn-g" style="display:inline-flex">Connect with us →</a>
-            <!-- <div class="contact-meta">
-              <div class="cm-label">Reach us directly</div>
-              <span class="obf-email" id="why-email" data-u="info" data-d="greenwaveitsolutions.com" onclick="revealEmail(this)" title="Click to reveal">Click to show email</span><br>
-              <a href="tel:+15122021694" style="color:var(--mid);font-weight:400;font-size:.875rem;text-decoration:none;display:block;margin-top:4px">+1 512 202 1694</a>
-            </div> -->
         </div>
       </div>
     </div>
@@ -373,16 +367,7 @@
     const btn = document.getElementById('fsub');
     const st  = document.getElementById('fstatus');
 
-    // 1. Check legacy honeypot input trap immediately
-    if (document.getElementById('hp_name').value) {
-      st.textContent = '✓ Thank you! We received your message and will respond within one business day.';
-      st.className = 'ok'; st.style.display = 'block';
-      e.target.reset(); 
-      if(typeof hcaptcha !== 'undefined') hcaptcha.reset();
-      return;
-    }
-
-    // 2. Validate hCaptcha completion state before posting data
+    // 1. Validate hCaptcha completion state before posting data
     const captchaResponse = e.target.querySelector('[name="h-captcha-response"]');
     if (captchaResponse && !captchaResponse.value) {
       st.textContent = '✗ Please complete the interactive verification box puzzle check first.';
@@ -393,7 +378,7 @@
     btn.disabled = true; btn.textContent = 'Sending…';
     st.style.display = 'none';
 
-    // Construct natively bound form entries directly
+    // 2. Use native FormData parsing to collect all inputs automatically
     const formData = new FormData(e.target);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
