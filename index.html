@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Greenwave IT Solutions — Sustainable Technology Consulting</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGITS%3C/text%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGITS%3C/text%3E%3C/svg%3E">
+  <title>Greenwave IT Solutions</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGIS%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGIS%3C/text%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root{--g9:#0a2117;--g8:#0f2e20;--g7:#163d2a;--g6:#1e5437;--g5:#276944;--g4:#2e8050;--g3:#3aaa68;--g2:#74c994;--g1:#c8ecd7;--g0:#eef8f2;--white:#fff;--stone:#f6f5f1;--ink:#141914;--mid:#4a5549;--muted:#8a9888;--r:8px;--rl:16px}
@@ -16,7 +16,6 @@
     nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;transition:background .35s,box-shadow .35s}
     nav.solid{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.08)}
     .nav-logo{display:flex;align-items:center;text-decoration:none}
-    /* SVG logo — color adapts via CSS filter/color */
     .nav-logo img.logo-svg{height:48px;width:auto;filter:brightness(0) invert(1);transition:filter .35s}
     nav.solid .nav-logo img.logo-svg{filter:none}
     .nav-links{display:flex;align-items:center;gap:2px}
@@ -125,13 +124,14 @@
     .fg input,.fg textarea,.fg select{width:100%;padding:.7rem .95rem;border:1.5px solid rgba(0,0,0,.1);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.875rem;background:#fff;color:var(--ink);transition:border-color .2s,box-shadow .2s;appearance:none}
     .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--g4);box-shadow:0 0 0 3px rgba(46,128,80,.13)}
     .fg textarea{resize:vertical;min-height:110px}
-    .hp-field{position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden}
     .fsub{width:100%;padding:.875rem;background:var(--g4);color:#fff;border:none;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s}
     .fsub:hover:not(:disabled){background:var(--g5);transform:translateY(-1px)}
     .fsub:disabled{opacity:.65;cursor:not-allowed}
     #fstatus{display:none;margin-top:.875rem;padding:.875rem 1rem;border-radius:var(--r);font-size:.85rem}
     #fstatus.ok{background:#c8ecd7;color:#0a2117}
     #fstatus.err{background:#fde8e8;color:#5c1a1a}
+    
+    .captcha-wrapper { margin: 1.25rem 0; width: 100%; display: flex; justify-content: flex-start; }
 
     footer{background:var(--ink);color:rgba(255,255,255,.5);padding:2.75rem 2.5rem}
     .foot-inner{max-width:1100px;margin:0 auto}
@@ -164,12 +164,13 @@
       h1.htitle{font-size:2.25rem}
     }
   </style>
+  <script src="https://web3forms.com/client/script.js" async defer></script>
 </head>
 <body>
 
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img class="logo-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 52'%3E%3Crect x='3' y='7' width='38' height='38' rx='4' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='22' y='33' font-family='Georgia,serif' font-size='18' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGITS%3C/text%3E%3Ctext x='54' y='26' font-family='Georgia,serif' font-size='17' font-weight='400' fill='currentColor' letter-spacing='-0.3'%3EGreenwave IT%3C/text%3E%3Ctext x='54' y='42' font-family='Arial,sans-serif' font-size='9.5' fill='currentColor' letter-spacing='1.5' opacity='0.65'%3EFOR SUSTAINABLE IT%3C/text%3E%3C/svg%3E" alt="Greenwave IT Solutions">
+    <img class="logo-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 52'%3E%3Crect x='3' y='7' width='38' height='38' rx='4' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='22' y='33' font-family='Georgia,serif' font-size='18' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGIS%3C/text%3E%3Ctext x='54' y='26' font-family='Georgia,serif' font-size='16' font-weight='420' fill='currentColor' letter-spacing='-0.3'%3EGreenwave IT Solutions%3C/text%3E%3Ctext x='54' y='42' font-family='Arial,sans-serif' font-size='9.5' fill='currentColor' letter-spacing='1.5' opacity='0.65'%3ETransforming Vision into Technology Reality%3C/text%3E%3C/svg%3E" alt="Greenwave IT Solutions">
   </a>
   <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
@@ -269,11 +270,6 @@
           <h3>Have a project in mind?</h3>
           <p>We can help you bring your ideas to life. Let's talk about what we can build and grow together.</p>
           <a href="#contact" class="btn-g" style="display:inline-flex">Connect with us →</a>
-          <div class="contact-meta">
-            <div class="cm-label">Reach us directly</div>
-            <span class="obf-email" id="why-email" data-u="info" data-d="greenwaveitsolutions.com" onclick="revealEmail(this)" title="Click to reveal">Click to show email</span><br>
-            <a href="tel:+15122021694" style="color:var(--mid);font-weight:400;font-size:.875rem;text-decoration:none;display:block;margin-top:4px">+1 512 202 1694</a>
-          </div>
         </div>
       </div>
     </div>
@@ -289,16 +285,18 @@
           <p>Whether you have a clear vision or just an idea — we're here to shape it into a technology solution that delivers real results.</p>
           <div class="citem"><div class="cicon">✉️</div><div class="ctext"><strong>Email</strong><span class="obf-email" id="contact-email" data-u="info" data-d="greenwaveitsolutions.com" onclick="revealEmail(this)" title="Click to reveal">Click to show email</span></div></div>
           <div class="citem"><div class="cicon">📞</div><div class="ctext"><strong>Phone</strong><span>+1 512 202 1694</span></div></div>
-          <div class="citem"><div class="cicon">🕐</div><div class="ctext"><strong>Hours</strong><span>Mon–Fri, 9am–5pm CT</span></div></div>
+          <div class="citem"><div class="cicon">✉️</div><div class="ctext"><strong>Hours</strong><span>Mon–Fri, 9am–5pm CT</span></div></div>
           <div class="citem"><div class="cicon">📍</div><div class="ctext"><strong>Address</strong><span>5900 Balcones Drive, STE 100<br>Austin, TX 78731</span></div></div>
         </div>
         <div class="cform reveal">
           <h3>Send us an inquiry</h3>
           <form id="inquiry-form" novalidate>
-            <div class="hp-field" aria-hidden="true">
-              <label for="hp_name">Leave this empty</label>
-              <input type="text" id="hp_name" name="hp_name" tabindex="-1" autocomplete="off">
-            </div>
+            <input type="hidden" name="access_key" value="%%WEB3FORMS_KEY%%">
+            <input type="hidden" name="subject" value="New Website Inquiry from Greenwave IT Solutions">
+            <input type="hidden" name="from_name" value="Greenwave Site Form">
+
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
             <div class="frow">
               <div class="fg"><label for="fn">First Name *</label><input type="text" id="fn" name="firstName" required placeholder="John" autocomplete="given-name"></div>
               <div class="fg"><label for="ln">Last Name *</label><input type="text" id="ln" name="lastName" required placeholder="Smith" autocomplete="family-name"></div>
@@ -313,6 +311,11 @@
               </select>
             </div>
             <div class="fg"><label for="msg">Message *</label><textarea id="msg" name="message" required placeholder="Tell us about your project or inquiry…"></textarea></div>
+            
+            <div class="captcha-wrapper">
+               <div class="h-captcha" data-captcha="true"></div>
+            </div>
+
             <button type="submit" class="fsub" id="fsub">Send Inquiry</button>
             <div id="fstatus"></div>
           </form>
@@ -325,7 +328,7 @@
     <div class="foot-inner">
       <div class="foot-top">
         <div class="foot-logo">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 52'%3E%3Crect x='3' y='7' width='38' height='38' rx='4' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='22' y='33' font-family='Georgia,serif' font-size='18' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGITS%3C/text%3E%3Ctext x='54' y='26' font-family='Georgia,serif' font-size='17' font-weight='400' fill='white' letter-spacing='-0.3'%3EGreenwave IT%3C/text%3E%3Ctext x='54' y='42' font-family='Arial,sans-serif' font-size='9.5' fill='white' letter-spacing='1.5' opacity='0.65'%3EFOR SUSTAINABLE IT%3C/text%3E%3C/svg%3E" alt="Greenwave IT Solutions">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 52'%3E%3Crect x='3' y='7' width='38' height='38' rx='4' fill='none' stroke='%233aaa68' stroke-width='2.5'/%3E%3Ctext x='22' y='33' font-family='Georgia,serif' font-size='18' font-weight='700' fill='%233aaa68' text-anchor='middle' letter-spacing='1'%3EGIS%3C/text%3E%3Ctext x='54' y='26' font-family='Georgia,serif' font-size='17' font-weight='400' fill='white' letter-spacing='-0.3'%3EGreenwave IT%3C/text%3E%3Ctext x='54' y='42' font-family='Arial,sans-serif' font-size='9.5' fill='white' letter-spacing='1.5' opacity='0.65'%3EFOR SUSTAINABLE IT%3C/text%3E%3C/svg%3E" alt="Greenwave IT Solutions">
         </div>
         <div class="foot-links">
           <a href="#about">About</a><a href="#services">Services</a>
@@ -358,44 +361,56 @@
     el.outerHTML = '<a href="mailto:' + addr + '" style="color:var(--g5);font-size:.85rem">' + addr + '</a>';
   }
 
-  // ↓ Replace with your actual Worker URL
-  const WORKER_URL = '/contact';
-
+  // --- RECONSTRUCTED TRANSMISSION PIPELINE VIA WEB3FORMS API ---
   document.getElementById('inquiry-form').addEventListener('submit', async e => {
     e.preventDefault();
     const btn = document.getElementById('fsub');
     const st  = document.getElementById('fstatus');
 
-    if (document.getElementById('hp_name').value) {
-      st.textContent = '✓ Thank you! We will be in touch shortly.';
-      st.className = 'ok'; st.style.display = 'block';
-      e.target.reset(); return;
+    // 1. Validate hCaptcha completion state before posting data
+    const captchaResponse = e.target.querySelector('[name="h-captcha-response"]');
+    if (captchaResponse && !captchaResponse.value) {
+      st.textContent = '✗ Please complete the interactive verification box puzzle check first.';
+      st.className = 'err'; st.style.display = 'block';
+      return;
     }
 
     btn.disabled = true; btn.textContent = 'Sending…';
     st.style.display = 'none';
 
-    const data = {
-      firstName: e.target.firstName.value, lastName: e.target.lastName.value,
-      email: e.target.email.value, phone: e.target.phone.value,
-      service: e.target.service.value, message: e.target.message.value,
-      hp_name: document.getElementById('hp_name').value,
-    };
+    // 2. Use native FormData parsing to collect all inputs automatically
+    const formData = new FormData(e.target);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
     try {
-      const res = await fetch(WORKER_URL, {
-        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
       });
-      if(res.ok){
+      
+      const respData = await res.json();
+
+      if (res.status === 200 || respData.success) {
         st.textContent = '✓ Thank you! We received your message and will respond within one business day.';
-        st.className = 'ok'; e.target.reset();
-      } else { throw new Error(); }
-    } catch {
-      st.textContent = '✗ Something went wrong. Please try again or contact us directly.';
+        st.className = 'ok'; 
+        e.target.reset();
+      } else { 
+        throw new Error(respData.message || `Transmission Error: Code ${res.status}`); 
+      }
+    } catch (err) {
+      st.textContent = '✗ ' + (err.message || 'Something went wrong. Please try again.');
       st.className = 'err';
+    } finally {
+      st.style.display = 'block';
+      btn.disabled = false; 
+      btn.textContent = 'Send Inquiry';
+      if(typeof hcaptcha !== 'undefined') hcaptcha.reset(); // Clears layout validation for next submission
     }
-    st.style.display = 'block';
-    btn.disabled = false; btn.textContent = 'Send Inquiry';
   });
 </script>
 </body>
